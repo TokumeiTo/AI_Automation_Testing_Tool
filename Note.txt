@@ -1,0 +1,15 @@
+- python -m venv venv (A virtual environment (venv) acts like an isolated playground for Python. It ensures that the packages we install for this project (like FastAPI) don't mix with or break anything else on your machine.)
+- .\venv\Scripts\activate
+- backend>requirements.txt
+fastapi>=0.100.0
+uvicorn>=0.22.0
+openai>=1.0.0
+pydantic>=2.0.0
+requests>=2.31.0
+
+- pip install -r requirements.txt
+
+- .\venv\Scripts\activate
+- python -m uvicorn app.main:app --reload
+
+- pip install python-dotenv (.env setup)
