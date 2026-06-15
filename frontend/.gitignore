@@ -1,0 +1,31 @@
+# Cache and logs
+.eslintcache
+*.log
+.DS_Store
+Thumbs.db
+
+# Node / Frontend / Test-Runner dependencies
+node_modules/
+dist/
+/frontend/dist/
+/test-runner/playwright-report/
+/test-runner/test-results/
+
+# Python / Backend environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.env
+
+# Local configuration files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
