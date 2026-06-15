@@ -1,20 +1,33 @@
 import os
 import json
+from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv()
+base_dir = Path(__file__).resolve().parent.parent.parent
+env_path = base_dir / ".env"
+load_dotenv(dotenv_path=env_path)
 
 class AIService:
     def __init__(self):
-        # Grabs your API key from the environment variables
-        # For now, it will look for an environment variable named OPENAI_API_KEY
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError(f"CRITICAL: OPENAI_API_KEY is missing at: {env_path}")
+            
+        # OpenRouter requires identification headers for free tier traffic verification
+        self.client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key,
+            default_headers={
+                "HTTP-Referer": "http://localhost:8000", # Can be your local site URL
+                "X-Title": "AI Testing Automation"   # The name of your tool
+            }
+        )
 
     async def generate_test_cases(self, scenario_text: str) -> dict:
         """
-        Sends the user scenario to OpenAI and requests a highly structured JSON array
-        of executable steps for Playwright.
+        Sends the user scenario to OpenRouter and requests a highly structured JSON array
+        using a free open-source model.
         """
         system_prompt = (
             "You are an expert QA Automation Engineer. Your task is to convert high-level system "
@@ -29,22 +42,20 @@ class AIService:
         )
 
         try:
-            # We use the standard gpt-4o-mini here to keep it free/cheap for our demo target
+            # Using an excellent, ultra-fast free model from OpenRouter
             response = self.client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="google/gemma-3-12b-it:free",
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": f"Scenario: {scenario_text}"}
                 ],
-                temperature=0.2 # Lower temperature means more predictable, structured responses
+                temperature=0.2
             )
             
-            # Extract text response and convert to a clean python dictionary
             raw_content = response.choices[0].message.content.strip()
             return json.loads(raw_content)
 
         except Exception as e:
-            # Fallback mock payload if the API key is missing or calls fail during local dev testing
             return {
                 "error": f"AI Generation failed ({str(e)})",
                 "test_cases": [
