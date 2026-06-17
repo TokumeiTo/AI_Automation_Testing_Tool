@@ -13,3 +13,35 @@ requests>=2.31.0
 - python -m uvicorn app.main:app --reload
 
 - pip install python-dotenv (.env setup)
+- pip install faker (The Faker library in Python is used to generate fake but realistic-looking data — useful for testing, seeding databases, or anonymizing sensitive information.)
+
+
+- npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+- npm install @playwright/test playwright
+- npx playwright install (Install system browsers)
+- npm install chalk
+
+
+
+
+
+frontend/src/
+├── apis/
+│   └── aiApi.ts             # Direct Axios/Fetch backend integrations
+├── components/
+│   ├── InteractiveGrid.tsx  # The spreadsheet-like test step table
+│   └── ScenarioInput.tsx    # The text input block with control triggers
+├── pages/
+│   └── TestWorkspace.tsx    # Page wrapper managing unified state orchestration
+├── services/
+│   └── playwrightMapper.ts  # Logic mapping steps directly into code views
+├── App.tsx
+└── main.tsx
+
+
+1. Human + AI & Integration Scenario & TestCase Creation
+2. Relational Test Data Generation
+3. Test Execution & Evidence Taking
+4. AI-Powered Mock Servers (Simulated Responses)
+5. Automated Root Cause Escalation & Log Analysis
+6. Reusable in Other Testing Phases (Unit, Integration, Comprehensive)

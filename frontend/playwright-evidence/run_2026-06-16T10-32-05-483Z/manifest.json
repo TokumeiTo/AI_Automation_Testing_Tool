@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-06-16T10:32:08.318Z",
+  "browser": "Chrome",
+  "status": "PASSED",
+  "totalDurationMs": 17639,
+  "stepsTrack": [
+    {
+      "id": 1,
+      "action": "goto",
+      "stepDescription": "Go to http://10.1.12.212/auth/login page.",
+      "status": "PASSED",
+      "durationMs": 10580,
+      "standardScreenshot": "screenshots/step_1_standard.png",
+      "fullPageScreenshot": "screenshots/step_1_fullpage.png"
+    },
+    {
+      "id": 2,
+      "action": "fill",
+      "stepDescription": "Fill \"01-0001\" into target \"xpath=//*[@id='_r_3_']\".",
+      "status": "PASSED",
+      "durationMs": 754,
+      "standardScreenshot": "screenshots/step_2_standard.png",
+      "fullPageScreenshot": "screenshots/step_2_fullpage.png"
+    },
+    {
+      "id": 3,
+      "action": "fill",
+      "stepDescription": "Fill \"dat123\" into target \"xpath=//*[@id='_r_4_']\".",
+      "status": "PASSED",
+      "durationMs": 1020,
+      "standardScreenshot": "screenshots/step_3_standard.png",
+      "fullPageScreenshot": "screenshots/step_3_fullpage.png"
+    },
+    {
+      "id": 4,
+      "action": "click",
+      "stepDescription": "Click target \"xpath=//*[@id='root']/div/div[3]/div/div/form/div[3]/button\" to submit login.",
+      "status": "PASSED",
+      "durationMs": 3043,
+      "standardScreenshot": "screenshots/step_4_standard.png",
+      "fullPageScreenshot": "screenshots/step_4_fullpage.png"
+    },
+    {
+      "id": 5,
+      "action": "click",
+      "stepDescription": "Click target \"xpath=//*[@id='root']/div/div[2]/header/div/div[2]/button[1]\".",
+      "status": "PASSED",
+      "durationMs": 2241,
+      "standardScreenshot": "screenshots/step_5_standard.png",
+      "fullPageScreenshot": "screenshots/step_5_fullpage.png"
+    }
+  ]
+}
