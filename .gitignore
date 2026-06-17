@@ -5,13 +5,16 @@
 Thumbs.db
 
 # Node / Frontend / Test-Runner dependencies
-node_modules/
+# 🟩 Commented out so Git tracks your portable dependencies and browser assets
+# node_modules/
+# playwright-browsers/
 dist/
 /frontend/dist/
 /test-runner/playwright-report/
 /test-runner/test-results/
 
 # Python / Backend environments
+# 🟩 Keep venv ignored because your new "python-portable" folder handles this now
 venv/
 .venv/
 __pycache__/
