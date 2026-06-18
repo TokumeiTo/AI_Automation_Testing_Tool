@@ -6,19 +6,18 @@ uvicorn>=0.22.0
 openai>=1.0.0
 pydantic>=2.0.0
 requests>=2.31.0
+python-dotenv>=1.0.0
+faker>=40.0.0
 
 - pip install -r requirements.txt
 
 - .\venv\Scripts\activate
 - python -m uvicorn app.main:app --reload
 
-- pip install python-dotenv (.env setup)
-- pip install faker (The Faker library in Python is used to generate fake but realistic-looking data — useful for testing, seeding databases, or anonymizing sensitive information.)
-
 
 - npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 - npm install @playwright/test playwright
-- npx playwright install (Install system browsers)
+- npx playwright install (Install system browsers) // do internal
 - npm install chalk
 
 
