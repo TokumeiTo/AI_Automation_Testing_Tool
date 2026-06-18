@@ -49,11 +49,16 @@ frontend/src/
 
 
 
-PORTABLE_PLAYWRIGHT
-# Run this inside the client's backend/ms-playwright folder to restore the files
+# 1. Rebuild Chromium (Full & Headless Shell)
 cmd /c "copy /b .\chromium-1228\chrome-win64\chrome.dll.part* .\chromium-1228\chrome-win64\chrome.dll"
 cmd /c "copy /b .\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe.part* .\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe"
 
-# Clean up the .part fragments so you don't waste disk space
+# 2. Rebuild Firefox
+cmd /c "copy /b .\firefox-1532\firefox\xul.dll.part* .\firefox-1532\firefox\xul.dll"
+
+# 3. Clean up all temporary chunks across all folders
 Remove-Item ".\chromium-1228\chrome-win64\chrome.dll.part*"
 Remove-Item ".\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe.part*"
+Remove-Item ".\firefox-1532\firefox\xul.dll.part*"
+
+Webkit don't need to Rebuild

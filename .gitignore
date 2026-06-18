@@ -13,7 +13,7 @@ frontend/node_modules/
 # backend/ms-playwright/
 
 # 🛑 KEEP BLOCKED: Only block webkit until we check its size or split it
-backend/ms-playwright/webkit-2311/
+# backend/ms-playwright/webkit-2311/
 
 # 🟩 ALLOWED: Commented out (or deleted) so Git can see and track them!
 # backend/ms-playwright/firefox-1532/
