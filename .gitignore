@@ -11,12 +11,16 @@ node_modules/
 frontend/node_modules/
 # ms-playwright/
 # backend/ms-playwright/
-# frontend/playwright-browsers/
-backend/ms-playwright/firefox-1532/
+
+# 🛑 KEEP BLOCKED: Only block webkit until we check its size or split it
 backend/ms-playwright/webkit-2311/
-backend/ms-playwright/ffmpeg-1011/
-backend/ms-playwright/winldd-1007/
-backend/ms-playwright/.links/
+
+# 🟩 ALLOWED: Commented out (or deleted) so Git can see and track them!
+# backend/ms-playwright/firefox-1532/
+# backend/ms-playwright/ffmpeg-1011/
+# backend/ms-playwright/winldd-1007/
+# backend/ms-playwright/.links/
+
 dist/
 /frontend/dist/
 /test-runner/playwright-report/

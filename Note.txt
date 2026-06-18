@@ -45,3 +45,15 @@ frontend/src/
 4. AI-Powered Mock Servers (Simulated Responses)
 5. Automated Root Cause Escalation & Log Analysis
 6. Reusable in Other Testing Phases (Unit, Integration, Comprehensive)
+
+
+
+
+PORTABLE_PLAYWRIGHT
+# Run this inside the client's backend/ms-playwright folder to restore the files
+cmd /c "copy /b .\chromium-1228\chrome-win64\chrome.dll.part* .\chromium-1228\chrome-win64\chrome.dll"
+cmd /c "copy /b .\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe.part* .\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe"
+
+# Clean up the .part fragments so you don't waste disk space
+Remove-Item ".\chromium-1228\chrome-win64\chrome.dll.part*"
+Remove-Item ".\chromium_headless_shell-1228\chrome-headless-shell-win64\chrome-headless-shell.exe.part*"
