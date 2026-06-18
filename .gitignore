@@ -9,9 +9,14 @@ Thumbs.db
 node_modules/
 # playwright-browsers/
 frontend/node_modules/
-ms-playwright/
-backend/ms-playwright/
-frontend/playwright-browsers/
+# ms-playwright/
+# backend/ms-playwright/
+# frontend/playwright-browsers/
+backend/ms-playwright/firefox-1532/
+backend/ms-playwright/webkit-2311/
+backend/ms-playwright/ffmpeg-1011/
+backend/ms-playwright/winldd-1007/
+backend/ms-playwright/.links/
 dist/
 /frontend/dist/
 /test-runner/playwright-report/
@@ -36,3 +41,12 @@ __pycache__/
 *.njsproj
 *.sln
 *.swp
+
+# Prevent tracking the original large binary layouts
+**.dll
+**.exe
+
+# ⚡ EXCEPTIONS: Force Git to track our small chunked pieces!
+!**/*.part*
+!**/*_validated
+!**/*_complete
