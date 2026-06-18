@@ -6,8 +6,12 @@ Thumbs.db
 
 # Node / Frontend / Test-Runner dependencies
 # 🟩 Commented out so Git tracks your portable dependencies and browser assets
-# node_modules/
+node_modules/
 # playwright-browsers/
+frontend/node_modules/
+ms-playwright/
+backend/ms-playwright/
+frontend/playwright-browsers/
 dist/
 /frontend/dist/
 /test-runner/playwright-report/
