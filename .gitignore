@@ -10,16 +10,16 @@ node_modules/
 # playwright-browsers/
 frontend/node_modules/
 # ms-playwright/
-# backend/ms-playwright/
+# frontend/ms-playwright/
 
 # 🛑 KEEP BLOCKED: Only block webkit until we check its size or split it
 # backend/ms-playwright/webkit-2311/
 
 # 🟩 ALLOWED: Commented out (or deleted) so Git can see and track them!
-# backend/ms-playwright/firefox-1532/
-# backend/ms-playwright/ffmpeg-1011/
-# backend/ms-playwright/winldd-1007/
-# backend/ms-playwright/.links/
+# frontend/ms-playwright/firefox-1532/
+# frontend/ms-playwright/ffmpeg-1011/
+# frontend/ms-playwright/winldd-1007/
+# frontend/ms-playwright/.links/
 
 dist/
 /frontend/dist/
@@ -40,7 +40,7 @@ __pycache__/
 # Local configuration files
 .vscode/
 .idea/
-*.suo
+*.suo   
 *.ntvs*
 *.njsproj
 *.sln
@@ -52,5 +52,6 @@ __pycache__/
 
 # ⚡ EXCEPTIONS: Force Git to track our small chunked pieces!
 !**/*.part*
+!**/*.exe
 !**/*_validated
 !**/*_complete

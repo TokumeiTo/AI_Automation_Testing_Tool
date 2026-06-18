@@ -11,13 +11,11 @@ faker>=40.0.0
 
 - pip install -r requirements.txt
 
-- .\venv\Scripts\activate
 - python -m uvicorn app.main:app --reload
 
 
 - npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 - npm install @playwright/test playwright
-- npx playwright install (Install system browsers) // do internal
 - npm install chalk
 
 

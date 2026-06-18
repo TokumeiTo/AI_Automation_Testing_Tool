@@ -15,7 +15,7 @@ export async function runWorkspaceSteps(stepsArray, browserName = "Chrome", devi
     Chrome: (headless) => chromium.launch({ headless }),
     Firefox: (headless) => firefox.launch({ headless }),
     Webkit: (headless) => webkit.launch({ headless }),
-    Microsoft_Edge: (headless) => chromium.launch({ channel: 'msedge', headless }) // 🟩 Fixed browserMap typo string alignment
+    Microsoft_Edge: (headless) => chromium.launch({ channel: 'msedge', headless })
   };
 
   const browser = await browserMap[browserName](false);

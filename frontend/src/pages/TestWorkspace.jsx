@@ -18,7 +18,7 @@ export default function TestWorkspace() {
   const [activeRunId, setActiveRunId] = useState('');
   const [activeVideoFile, setActiveVideoFile] = useState(null);
 
-  const BACKEND_BASE_URL = "http://localhost:8000";
+  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || "http://localhost:8000";
 
   const handleGenerationTrigger = async () => {
     setIsLoading(true);
