@@ -1,33 +1,30 @@
-# Cache and logs
+# ====================================================================
+# CACHE AND LOGS
+# ====================================================================
 .eslintcache
 *.log
 .DS_Store
 Thumbs.db
 
-# Node / Frontend / Test-Runner dependencies
-# 🟩 Commented out so Git tracks your portable dependencies and browser assets
+# ====================================================================
+# NODE / FRONTEND / TEST-RUNNER DEPENDENCIES
+# ====================================================================
 node_modules/
-# playwright-browsers/
 frontend/node_modules/
-# ms-playwright/
-# frontend/ms-playwright/
 
-# 🛑 KEEP BLOCKED: Only block webkit until we check its size or split it
-# backend/ms-playwright/webkit-2311/
+# 🟩 ALLOWED BROWSER STACK: 
+# We leave 'frontend/ms-playwright/' completely out of the ignore patterns 
+# so Git naturally enters the folder and tracks your standalone testing suite.
 
-# 🟩 ALLOWED: Commented out (or deleted) so Git can see and track them!
-# frontend/ms-playwright/firefox-1532/
-# frontend/ms-playwright/ffmpeg-1011/
-# frontend/ms-playwright/winldd-1007/
-# frontend/ms-playwright/.links/
-
+# 🛑 BLOCKED BUILD OUTPUTS
 dist/
 /frontend/dist/
 /test-runner/playwright-report/
 /test-runner/test-results/
 
-# Python / Backend environments
-# 🟩 Keep venv ignored because your new "python-portable" folder handles this now
+# ====================================================================
+# PYTHON / BACKEND ENVIRONMENTS
+# ====================================================================
 venv/
 .venv/
 __pycache__/
@@ -37,21 +34,28 @@ __pycache__/
 .pytest_cache/
 .env
 
-# Local configuration files
+# ====================================================================
+# LOCAL CONFIGURATION FILES
+# ====================================================================
 .vscode/
 .idea/
-*.suo   
+*.suo    
 *.ntvs*
 *.njsproj
 *.sln
 *.swp
 
-# Prevent tracking the original large binary layouts
-**.dll
-**.exe
+# ====================================================================
+# AIR-GAPPED DEPLOYMENT FIREWALL LAYER
+# ====================================================================
 
-# ⚡ EXCEPTIONS: Force Git to track our small chunked pieces!
+# 🛑 PREVENT CRASHES: Only block the 3 exact giant files that exceed GitHub's 100MB limit.
+# This keeps your push safe while letting chrome.exe, chrome_elf.dll, etc., pass naturally.
+**/chrome-win64/chrome.dll
+**/chrome-headless-shell-win64/chrome-headless-shell.exe
+**/firefox/xul.dll
+
+# ⚡ CHUNK EXCEPTIONS: Force Git to track our manually split chunk files instead!
 !**/*.part*
-!**/*.exe
 !**/*_validated
 !**/*_complete
