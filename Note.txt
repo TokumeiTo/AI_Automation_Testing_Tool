@@ -15,6 +15,12 @@ faker>=40.0.0
 - python -m uvicorn app.main:app --reload
 
 
+npmmirror.com register fix
+- npm config set registry https://registry.npmjs.org/ (register back to npmjs.org)
+- npm cache clean --force (if needed, delete package.lock.json)
+- npm config get registry  (https://registry.npmjs.org/ should be shown)
+
+- npm install 
 - npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 - npm install @playwright/test playwright
 - npx playwright install (Install system browsers) // do internal
