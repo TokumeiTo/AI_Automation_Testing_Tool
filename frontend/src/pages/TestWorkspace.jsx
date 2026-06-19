@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Container, Box, Typography, Paper, Button, MenuItem, TextField } from '@mui/material';
+import { Container, Box, Typography, Paper, Button, MenuItem, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import CodeIcon from '@mui/icons-material/Code';
 
 import ScenarioInput from '../components/ScenarioInput';
 import InteractiveGrid from '../components/InteractiveGrid';
-import EvidenceDashboard from '../components/EvidenceDashboard'; // 🟩 Imported clean view container
+import InteractiveDataView from '../components/InteractiveDataView'; // 🟩 Imported clean JSON view code engine block
+import EvidenceDashboard from '../components/EvidenceDashboard';
 import { generateAutomationSteps, executePlaywrightPlayback } from '../apis/aiEngineApi';
 
 export default function TestWorkspace() {
@@ -17,8 +20,15 @@ export default function TestWorkspace() {
   const [playbackResult, setPlaybackResult] = useState(null);
   const [activeRunId, setActiveRunId] = useState('');
   const [activeVideoFile, setActiveVideoFile] = useState(null);
+  const [viewMode, setViewMode] = useState('grid'); // 🟩 'grid' or 'json' view toggle mode anchor state
 
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || "http://localhost:8000";
+
+  const handleViewChange = (event, nextView) => {
+    if (nextView !== null) {
+      setViewMode(nextView);
+    }
+  };
 
   const handleGenerationTrigger = async () => {
     setIsLoading(true);
@@ -45,7 +55,7 @@ export default function TestWorkspace() {
       const response = await executePlaywrightPlayback(testSteps, selectedBrowser, 'default');
       if (response.success) {
         setActiveRunId(response.run_id);
-        setActiveVideoFile(response.video_filename); // 🟩 Save the dynamic filename
+        setActiveVideoFile(response.video_filename);
         setPlaybackResult(response.report);
       } else {
         setErrorMsg('Failed to trigger the backend execution process.');
@@ -59,15 +69,17 @@ export default function TestWorkspace() {
 
   return (
     <Container maxWidth={false} sx={{ py: 4, minHeight: '100vh', px: { xs: 2, sm: 4 } }}>
-      <Box sx={{ mb: 4, pb: 2, borderBottom: '1px solid #e2e8f0' }}>
-        <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: 'primary.main', letterSpacing: '-0.03em' }}>
-          🛠️ AI Automation Testing Workspace
-        </Typography>
-        {errorMsg && <Typography variant="body2" color="error.main" sx={{ mt: 1, fontWeight: 'bold' }}>⚠️ Error: {errorMsg}</Typography>}
+      <Box sx={{ mb: 4, pb: 2, borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+        <Box>
+          <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: 'primary.main', letterSpacing: '-0.03em' }}>
+            🛠️ AI Automation Testing Workspace
+          </Typography>
+          {errorMsg && <Typography variant="body2" color="error.main" sx={{ mt: 1, fontWeight: 'bold' }}>⚠️ Error: {errorMsg}</Typography>}
+        </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, gap: 4, alignItems: 'stretch', mb: 2 }}>
-        <Box sx={{ width: { xs: '100%', lg: '33.33%' }, flexShrink: 0 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'stretch', mb: 2 }}>
+        <Box sx={{ width: '100%', flexShrink: 0 }}>
           <Paper variant="outlined" sx={{ p: 3, borderRadius: 3, height: '100%', bgcolor: '#f8fafc' }}>
             <ScenarioInput scenarioText={scenarioText} setScenarioText={setScenarioText} onGenerate={handleGenerationTrigger} isLoading={isLoading} errorMsg={errorMsg} />
           </Paper>
@@ -87,13 +99,36 @@ export default function TestWorkspace() {
               </Button>
             </Paper>
           )}
+
+          {/* 🟩 THE VIEW MODE MODE SELECTOR ENGINE TOGGLE */}
+          {testSteps.length > 0 && (
+            <ToggleButtonGroup
+              value={viewMode}
+              exclusive
+              onChange={handleViewChange}
+              size="small"
+              sx={{ '& .Mui-selected': { bgcolor: '#e2e8f0 !important', fontWeight: 'bold' } }}
+            >
+              <ToggleButton value="grid" aria-label="grid view">
+                <ViewListIcon sx={{ mr: 0.5, fontSize: 18 }} /> Grid View
+              </ToggleButton>
+              <ToggleButton value="json" aria-label="json view">
+                <CodeIcon sx={{ mr: 0.5, fontSize: 18 }} /> JSON View
+              </ToggleButton>
+            </ToggleButtonGroup>
+          )}
+
           <Paper variant="outlined" sx={{ p: 3, borderRadius: 3, flexGrow: 1 }}>
-            <InteractiveGrid steps={testSteps} onStepsChange={setTestSteps} />
+            {/* 🟩 CONDITIONAL LAYOUT LAYER ROUTER */}
+            {viewMode === 'grid' ? (
+              <InteractiveGrid steps={testSteps} onStepsChange={setTestSteps} />
+            ) : (
+              <InteractiveDataView steps={testSteps} onStepsChange={setTestSteps} />
+            )}
           </Paper>
         </Box>
       </Box>
 
-      {/* 🟩 Clean, Delegated UI Evidence Feed Section */}
       <EvidenceDashboard
         playbackResult={playbackResult}
         activeRunId={activeRunId}

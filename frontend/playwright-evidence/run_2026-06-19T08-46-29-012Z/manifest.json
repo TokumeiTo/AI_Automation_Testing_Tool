@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-06-19T08:46:33.548Z",
+  "browser": "Chrome",
+  "status": "PASSED",
+  "totalDurationMs": 21894,
+  "stepsTrack": [
+    {
+      "id": 1,
+      "action": "goto",
+      "stepDescription": "Go to Google homepage",
+      "status": "PASSED",
+      "durationMs": 7941,
+      "standardScreenshot": "screenshots/step_1_standard.png",
+      "fullPageScreenshot": "screenshots/step_1_fullpage.png"
+    },
+    {
+      "id": 2,
+      "action": "fill",
+      "stepDescription": "Search airless basket ball price",
+      "status": "PASSED",
+      "durationMs": 4263,
+      "standardScreenshot": "screenshots/step_2_standard.png",
+      "fullPageScreenshot": "screenshots/step_2_fullpage.png"
+    },
+    {
+      "id": 3,
+      "action": "keyboard",
+      "stepDescription": "Submit search query",
+      "status": "PASSED",
+      "durationMs": 2976,
+      "standardScreenshot": "screenshots/step_3_standard.png",
+      "fullPageScreenshot": "screenshots/step_3_fullpage.png"
+    },
+    {
+      "id": 4,
+      "action": "wait",
+      "stepDescription": "Wait for 2 seconds",
+      "status": "PASSED",
+      "durationMs": 2722,
+      "standardScreenshot": "screenshots/step_4_standard.png",
+      "fullPageScreenshot": "screenshots/step_4_fullpage.png"
+    },
+    {
+      "id": 5,
+      "action": "keyboard",
+      "stepDescription": "Refresh the page",
+      "status": "PASSED",
+      "durationMs": 3991,
+      "standardScreenshot": "screenshots/step_5_standard.png",
+      "fullPageScreenshot": "screenshots/step_5_fullpage.png"
+    }
+  ]
+}

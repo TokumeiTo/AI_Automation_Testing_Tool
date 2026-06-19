@@ -26,7 +26,7 @@ export default function ScenarioInput({
       <TextField
         label="Human Intent Prompt"
         multiline
-        rows={6}
+        rows={10}
         placeholder="Type user flow description sequence... (e.g., Go to register page, create account with unique email...)"
         variant="outlined"
         fullWidth

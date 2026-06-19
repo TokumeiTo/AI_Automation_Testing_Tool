@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-06-19T04:28:57.740Z",
+  "browser": "Chrome",
+  "status": "FAILED",
+  "totalDurationMs": 15852,
+  "stepsTrack": [
+    {
+      "id": 1,
+      "action": "goto",
+      "stepDescription": "Go to Google homepage",
+      "status": "PASSED",
+      "durationMs": 9043,
+      "standardScreenshot": "screenshots/step_1_standard.png",
+      "fullPageScreenshot": "screenshots/step_1_fullpage.png"
+    },
+    {
+      "id": 2,
+      "action": "fill",
+      "stepDescription": "Enter search query",
+      "status": "PASSED",
+      "durationMs": 1626,
+      "standardScreenshot": "screenshots/step_2_standard.png",
+      "fullPageScreenshot": "screenshots/step_2_fullpage.png"
+    },
+    {
+      "id": 3,
+      "action": "click",
+      "stepDescription": "Submit search query",
+      "status": "FAILED",
+      "durationMs": 5182,
+      "errorLogDetail": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('xpath=/html/body/div[2]/div[6]/form/div[1]/div/div[1]/div[2]/div[2]/div[3]/center/input[1]') to be visible\u001b[22m\n",
+      "emergencyScreenshot": "screenshots/step_3_CRASH_ERROR.png"
+    }
+  ],
+  "failureReason": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('xpath=/html/body/div[2]/div[6]/form/div[1]/div/div[1]/div[2]/div[2]/div[3]/center/input[1]') to be visible\u001b[22m\n"
+}

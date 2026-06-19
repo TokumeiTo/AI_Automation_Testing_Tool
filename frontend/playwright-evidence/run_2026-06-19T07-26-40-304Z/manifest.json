@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-06-19T07:26:46.338Z",
+  "browser": "Chrome",
+  "status": "PASSED",
+  "totalDurationMs": 12513,
+  "stepsTrack": [
+    {
+      "id": 1,
+      "action": "goto",
+      "stepDescription": "Go to Google homepage",
+      "status": "PASSED",
+      "durationMs": 7784,
+      "standardScreenshot": "screenshots/step_1_standard.png",
+      "fullPageScreenshot": "screenshots/step_1_fullpage.png"
+    },
+    {
+      "id": 2,
+      "action": "fill",
+      "stepDescription": "Search for airless basketball price",
+      "status": "PASSED",
+      "durationMs": 2143,
+      "standardScreenshot": "screenshots/step_2_standard.png",
+      "fullPageScreenshot": "screenshots/step_2_fullpage.png"
+    },
+    {
+      "id": 3,
+      "action": "keyboard",
+      "stepDescription": "Click Enter",
+      "status": "PASSED",
+      "durationMs": 2586,
+      "standardScreenshot": "screenshots/step_3_standard.png",
+      "fullPageScreenshot": "screenshots/step_3_fullpage.png"
+    }
+  ]
+}

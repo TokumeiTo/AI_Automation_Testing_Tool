@@ -12,6 +12,11 @@ const getActionChipColor = (action) => {
     case 'goto': return { bg: '#e3f2fd', color: '#0d47a1' };
     case 'fill': return { bg: '#fff3e0', color: '#e65100' };
     case 'click': return { bg: '#f3e5f5', color: '#4a148c' };
+    case 'keyboard': return { bg: '#e0f7fa', color: '#006064' };
+    case 'select': return { bg: '#fef3c7', color: '#d97706' };
+    case 'clear_storage': return { bg: '#ffe4e6', color: '#9f1239' };
+    case 'wait': return { bg: '#f1f5f9', color: '#475569' };
+    case 'assert': return { bg: '#dcfce7', color: '#166534' };
     default: return { bg: '#e8f5e9', color: '#1b5e20' };
   }
 };
@@ -153,7 +158,7 @@ export default function InteractiveGrid({ steps = [], onStepsChange }) {
                           width: '100%'
                         }}
                       >
-                        {['goto', 'fill', 'click', 'assert'].map((act) => {
+                        {['goto', 'fill', 'click', 'keyboard', 'select', 'clear_storage', 'wait', 'assert'].map((act) => {
                           const c = getActionChipColor(act);
                           return (
                             <MenuItem key={act} value={act} sx={{ fontSize: '0.75rem', fontFamily: 'monospace' }}>
@@ -170,36 +175,54 @@ export default function InteractiveGrid({ steps = [], onStepsChange }) {
 
                     {/* DOM TARGET SELECTOR TEXT FIELD */}
                     <TableCell>
-                      <TextField
-                        fullWidth
-                        variant="standard"
-                        value={step.target}
-                        placeholder={step.action === 'goto' ? 'http://...' : 'xpath=... or css=...'}
-                        onChange={(e) => handleUpdateStep(step.id, 'target', e.target.value)}
-                        slotProps={{
-                          input: { disableUnderline: true }
-                        }}
-                        sx={{ input: { fontSize: '0.8rem', fontFamily: 'monospace', color: '#475569', p: '4px 0' } }}
-                      />
+                      {step.action === 'clear_storage' || step.action === 'wait' ? (
+                        <Typography variant="caption" sx={{ color: '#94a3b8', fontStyle: 'italic', pl: 0.5 }}>
+                          {step.action === 'wait' ? 'global execution delay' : 'global browser context'}
+                        </Typography>
+                      ) : (
+                        <TextField
+                          fullWidth variant="standard" value={step.target}
+                          placeholder={
+                            step.action === 'goto' ? 'http://...' :
+                              step.action === 'assert' ? 'css/xpath selector or "url"' : 'xpath=... or css=...'
+                          } // 🟩 UPDATED placeholder for assert target guidance
+                          onChange={(e) => handleUpdateStep(step.id, 'target', e.target.value)}
+                          slotProps={{ input: { disableUnderline: true } }}
+                          sx={{ input: { fontSize: '0.8rem', fontFamily: 'monospace', color: '#475569', p: '4px 0' } }}
+                        />
+                      )}
                     </TableCell>
 
                     {/* PAYLOAD DATA VALUE TEXT FIELD */}
                     <TableCell>
-                      {step.action === 'goto' || step.action === 'click' ? (
+                      {/* 🟩 UPDATED: Make sure 'assert' is NOT included in this conditional hide block, 
+                          as assert needs the value column to hold expected string text values */}
+                      {step.action === 'goto' || step.action === 'click' || step.action === 'clear_storage' ? (
                         <Typography variant="caption" sx={{ color: '#94a3b8', fontStyle: 'italic', pl: 0.5 }}>
                           none
                         </Typography>
                       ) : (
                         <TextField
-                          fullWidth
-                          variant="standard"
-                          value={step.value || ''}
-                          placeholder="Text payload..."
+                          fullWidth variant="standard" value={step.value || ''}
+                          placeholder={
+                            step.action === 'wait' ? 'e.g., 3000 (ms)' :
+                              step.action === 'keyboard' ? 'e.g., Enter' :
+                                step.action === 'select' ? 'Option label text...' :
+                                  step.action === 'assert' ? 'Expected text/url value...' : 'Text payload...'
+                          } // 🟩 UPDATED placeholder to document dynamic assertion checking values
                           onChange={(e) => handleUpdateStep(step.id, 'value', e.target.value)}
-                          slotProps={{
-                            input: { disableUnderline: true }
+                          slotProps={{ input: { disableUnderline: true } }}
+                          sx={{
+                            input: {
+                              fontSize: '0.8rem', fontFamily: 'monospace',
+                              // 🟩 UPDATED: Added a distinctive text color match layout rule for assertion targets
+                              color: step.action === 'wait' ? '#475569' :
+                                step.action === 'select' ? '#d97706' :
+                                  step.action === 'keyboard' ? '#006064' :
+                                    step.action === 'assert' ? '#1b5e20' : '#047857',
+                              fontWeight: 600, p: '4px 0'
+                            }
                           }}
-                          sx={{ input: { fontSize: '0.8rem', fontFamily: 'monospace', color: '#047857', fontWeight: 600, p: '4px 0' } }}
                         />
                       )}
                     </TableCell>

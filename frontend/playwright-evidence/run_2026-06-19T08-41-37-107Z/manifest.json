@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-06-19T08:41:43.506Z",
+  "browser": "Chrome",
+  "status": "FAILED",
+  "totalDurationMs": 22074,
+  "stepsTrack": [
+    {
+      "id": 1,
+      "action": "goto",
+      "stepDescription": "Go to Google homepage",
+      "status": "PASSED",
+      "durationMs": 15050,
+      "standardScreenshot": "screenshots/step_1_standard.png",
+      "fullPageScreenshot": "screenshots/step_1_fullpage.png"
+    },
+    {
+      "id": 2,
+      "action": "fill",
+      "stepDescription": "Search for airless basketball price",
+      "status": "FAILED",
+      "durationMs": 7024,
+      "errorLogDetail": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('xpath=/html/body/div[2]/div[6]/form/div[1]/div/div[1]/div[2]/div[2]/textarea') to be visible\u001b[22m\n",
+      "emergencyScreenshot": "screenshots/step_2_CRASH_ERROR.png"
+    }
+  ],
+  "failureReason": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('xpath=/html/body/div[2]/div[6]/form/div[1]/div/div[1]/div[2]/div[2]/textarea') to be visible\u001b[22m\n"
+}
