@@ -16,6 +16,7 @@ faker>=40.0.0
 
 - npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 - npm install @playwright/test playwright
+- npx playwright install (Install system browsers) // do internal
 - npm install chalk
 
 

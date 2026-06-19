@@ -12,16 +12,21 @@ export async function runWorkspaceSteps(stepsArray, browserName = "Chrome", devi
   fs.mkdirSync(screenshotsDir, { recursive: true });
 
   const browserMap = {
-    Chrome: (headless) => chromium.launch({ headless }),
+    // 🟩 Uses the client's locally installed Google Chrome application natively
+    Chrome: (headless) => chromium.launch({ channel: 'chrome', headless }),
+
+    // 🟩 Uses the client's locally installed Microsoft Edge application natively
+    Microsoft_Edge: (headless) => chromium.launch({ channel: 'msedge', headless }),
+
+    // ⚠️ Firefox/WebKit cannot easily use channel defaults and typically require ms-playwright
     Firefox: (headless) => firefox.launch({ headless }),
-    Webkit: (headless) => webkit.launch({ headless }),
-    Microsoft_Edge: (headless) => chromium.launch({ channel: 'msedge', headless })
+    Webkit: (headless) => webkit.launch({ headless })
   };
 
   const browser = await browserMap[browserName](false);
 
   // 🎥 FIXED: recordVideo options injected directly into the browser context creation layout
-  const context = await browser.newContext({ 
+  const context = await browser.newContext({
     viewport: { width: 1280, height: 720 },
     recordVideo: {
       dir: runOutputDir, // 📂 Forces the video payload to write directly into the root of your dynamic run folder
@@ -29,7 +34,7 @@ export async function runWorkspaceSteps(stepsArray, browserName = "Chrome", devi
     },
     recordVideoCodec: "h264"
   });
-  
+
   const page = await context.newPage();
 
   // Helper to resolve CSS or XPath elements cleanly
@@ -173,7 +178,7 @@ export async function runWorkspaceSteps(stepsArray, browserName = "Chrome", devi
     // Escapes sequence cleanly on failure scenarios
   } finally {
     executionReport.totalDurationMs = Math.round(performance.now() - globalStartTime);
-    
+
     // 🟩 Explicitly closing context triggers Playwright to flush and write the .webm file 
     // to the `runOutputDir` folder before the script drops out.
     await context.close();

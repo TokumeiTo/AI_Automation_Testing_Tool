@@ -24,7 +24,7 @@ export default function EvidenceDashboard({ playbackResult, activeRunId, videoFi
     // 🎥 Construct the path to your Playwright video asset
     // Assumes your FastAPI backend mounts the "playwright-evidence" directory as static assets
     const videoUrl = videoFilename
-        ? `${backendUrl}/static/playwright-evidence/${activeRunId}/${videoFilename}`
+        ? `${backendUrl}/evidence/${activeRunId}/${videoFilename}`
         : null;
 
     return (

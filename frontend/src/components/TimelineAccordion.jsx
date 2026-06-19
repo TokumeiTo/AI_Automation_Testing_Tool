@@ -25,14 +25,16 @@ export default function TimelineAccordion({ reportStep, activeRunId, backendUrl 
       </AccordionSummary>
       <AccordionDetails sx={{ borderTop: '1px solid #e2e8f0', bgcolor: '#f8fafc', p: 3 }}>
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+
           {/* Highlight Frame Panel Box */}
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, display: 'flex', alignItems: 'center', gap: 0.5, color: '#475569' }}>
               <ImageIcon fontSize="small" /> Red Element-Highlight Action Capture
             </Typography>
             {reportStep.standardScreenshot ? (
-              <Box 
+              <Box
                 component="img"
+                // Removed the manual 'screenshots/' text since the property already includes it!
                 src={`${backendUrl}/evidence/${activeRunId}/${reportStep.standardScreenshot}`}
                 alt="Target action highlight frame view"
                 sx={{ width: '100%', maxHeight: 380, objectFit: 'contain', borderRadius: 2, border: '1px solid #cbd5e1', bgcolor: '#fff' }}
@@ -47,8 +49,9 @@ export default function TimelineAccordion({ reportStep, activeRunId, backendUrl 
             <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1, display: 'flex', alignItems: 'center', gap: 0.5, color: '#475569' }}>
               <ImageIcon fontSize="small" /> Full Page Layout Benchmark
             </Typography>
-            <Box 
+            <Box
               component="img"
+              // Cleaned up here too
               src={`${backendUrl}/evidence/${activeRunId}/${reportStep.fullPageScreenshot || reportStep.emergencyScreenshot}`}
               alt="Full viewport layout snapshot verification"
               sx={{ width: '100%', maxHeight: 380, objectFit: 'contain', borderRadius: 2, border: '1px solid #cbd5e1', bgcolor: '#fff' }}

@@ -26,14 +26,32 @@ def run_playback(payload: PlaybackRequest):
     Executes the incoming test steps matrix via Node/Playwright,
     and returns the structured manifest.json log data.
     """
-    # to guarantee Playwright executes them in the precise updated layout order.
+    # Guarantee Playwright executes them in the precise updated layout order.
     sorted_steps_list = sorted([step.dict() for step in payload.steps], key=lambda x: x['id'])
     
     # Encode the validated, ordered array to pass to Node
     steps_json = json.dumps(sorted_steps_list)
     
     try:
-        base_dir = "C:\\Thz\\AI_Automation_Tool"
+        # 🟩 BULLETPROOF DYNAMIC ROOT LOOKUP
+        # Get the directory of this current file (e.g., .../backend/app/api)
+        current_module_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Break the absolute path into individual folder components based on the OS separator
+        path_parts = current_module_dir.split(os.sep)
+        
+        # Explicitly look for the main workspace root directory name to lock onto
+        if "AI_Automation_Tool" in path_parts:
+            idx = path_parts.index("AI_Automation_Tool")
+            # Splice path segments up to the root folder, stripping out trailing "backend" paths
+            base_dir = os.sep.join(path_parts[:idx + 1])
+        else:
+            # Smart fallback logic if folder name varies on the client target machine
+            base_dir = os.path.abspath(os.path.join(current_module_dir, "..", ".."))
+            if os.path.basename(base_dir) == "backend":
+                base_dir = os.path.abspath(os.path.join(base_dir, ".."))
+        
+        # Bind the path layers cleanly—now fully guaranteed to avoid the backend/frontend mashup!
         frontend_dir = os.path.join(base_dir, "frontend")
         script_path = os.path.join(frontend_dir, "runTask.js")
         
@@ -101,7 +119,7 @@ def run_playback(payload: PlaybackRequest):
             "success": True,
             "message": "Playback execution sequence finalized completely.",
             "run_id": os.path.basename(latest_run_dir),
-            "video_filename": video_filename,  # Now safely guaranteed to be resolved
+            "video_filename": video_filename,
             "report": manifest_data
         }
         

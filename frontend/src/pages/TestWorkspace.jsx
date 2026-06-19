@@ -78,7 +78,7 @@ export default function TestWorkspace() {
             <Paper variant="outlined" sx={{ p: 2, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: '#f8fafc' }}>
               <TextField select label="Target Runtime" value={selectedBrowser} onChange={(e) => setSelectedBrowser(e.target.value)} size="small" sx={{ width: 180 }}>
                 <MenuItem value="Chrome">Google Chrome</MenuItem>
-                <MenuItem value="Miscrosoft_Edge">Microsoft Edge</MenuItem>
+                <MenuItem value="Microsoft_Edge">Microsoft Edge</MenuItem>
                 <MenuItem value="Firefox">Mozilla Firefox</MenuItem>
                 <MenuItem value="Webkit">Apple WebKit</MenuItem>
               </TextField>
